@@ -56,14 +56,21 @@ TreeNode::isRighty() {
 //this function returns a copy of a tree, requires parent
 TreeNode*
 TreeNode::duplicate(TreeNode* parent) {
-	if(this == NULL)
-		return NULL;
+	// if(this == NULL)
+	// 	return NULL;
+	// TreeNode* newNode = new TreeNode(*(t));
+	// newNode -> _left = _left -> duplicate(newNode);
+	// newNode -> _right = _right -> duplicate(newNode);
+	// if(parent == NULL)
+	// 	newNode -> _parent = NULL;
+	// else
+	// 	newNode -> _parent = parent;
+	// return newNode;
 	TreeNode* newNode = new TreeNode(*(t));
-	newNode -> _left = _left -> duplicate(newNode);
-	newNode -> _right = _right -> duplicate(newNode);
-	if(parent == NULL)
-		newNode -> _parent = NULL;
-	else
-		newNode -> _parent = parent;
+	newNode -> _parent = parent;
+	if(_left != NULL)
+		newNode -> _left = _left -> duplicate(newNode);
+	if(_right != NULL)
+		newNode -> _right = _right -> duplicate(newNode);
 	return newNode;
 }

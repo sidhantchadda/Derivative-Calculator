@@ -29,7 +29,12 @@ public:
 		delete _string;
 	}
 	int calculatePrecedence(Token t) {
-		char c = t._op;
+		char c;
+		if(t.elementType == operation) {
+			c = t._op;
+		}
+		else
+			return -1;
 		int pres = -1;
 		for(int i = 0; i<5; i++) {
 			if(precedence[i][0] == c) {
@@ -62,7 +67,6 @@ public:
 		stack.pop();
 		stdprint(stack);
 		stack.push(t);
-		//printf("%c ",t._op);
 	}
 	void printStack(std::stack<Token> stack) {
 		//printf("Stack: ");
@@ -126,8 +130,9 @@ public:
 						while(!stack.empty()) {
 							Token t2 = stack.top();
 							stack.pop();
-							if(t2._op == '(')
+							if(t2._op == '(') {
 								break;
+							}
 							output.push_back(t2);
 							if(stack.empty()) {
 								throw std::out_of_range("no matching closing parenthesis");
@@ -152,7 +157,6 @@ public:
 				while(!stack.empty()) {
 					Token t2 = stack.top();
 					int pres2 = calculatePrecedence(t2);
-					//something wrong here fix in morning
 					if((left == true && (pres <= pres2)) || (left == false && (pres<pres2))) {
 						t2 = stack.top();
 						stack.pop();

@@ -35,7 +35,8 @@ void test1(){
 	/*
 	Test for Shunting Yard
 	*/
-	char buf[] = "x^3+y^2+x*y+5";
+	//char buf[] = "x^3+y^2+x*y+5";
+	char buf[] = "((((3*(x^2))+(2*(0^1)))+((1*y)+(x*0)))+0)";
 	Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
 	printf("\nShunting Yard Output:\n");
