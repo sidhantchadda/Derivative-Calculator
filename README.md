@@ -8,12 +8,17 @@ First clone the repo:
 $ git clone https://github.com/koochi10/Derivative-Calculator.git
 $ cd Derivative-Calculator/
 ```
+
+
+To test code, first open test.cpp and choose the test you want to change. Next edit the line in that test containing:
+```C++
+char buf[] = "Insert mathetmatical expression here";
+```
 To compile run:
 ```Bash
 $ make
 ```
-
-And to run a test:
+Now to run 
 ```Bash
 $ ./test [TESTNAME]
 ```
