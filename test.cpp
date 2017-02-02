@@ -32,123 +32,91 @@ void test_io() {
 	ret -> print();
 }
 void test1(){
-	/*
-	Test for Shunting Yard
-	*/
-	//char buf[] = "x^3+y^2+x*y+5";
-	char buf[] = "((((3*(x^2))+(2*(0^1)))+((1*y)+(x*0)))+0)";
-	Shuntingyard s(buf);
+	char buf[] = "x^4";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nShunting Yard Output:\n");
-	for (int j=0;j<v.size();j++){
-		v[j].print();
-	}
-	
-	printf("\n\nExpected Output:\n");
-	printf("x3^y2^+xy*+5+\n");
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
-
 
 void test2() {
-	char buf[] ="10+43";
-	Shuntingyard s(buf);
+	char buf[] = "2x+5x^2+10x^5+15";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nShunting Yard Output:\n");
-	for(int j = 0; j<v.size(); j++) {
-		v[j].print();
-	}
-	printf("\n\n Expected Output:\n");
-	printf("1043+\n");
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
 void test3() {
-	char buf[] ="3+4*2/(1-5)^2^3";
-	Shuntingyard s(buf);
+	char buf[] = "x^3+y^2+x*y+5";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nShunting Yard Output:\n");
-	for(int j = 0; j<v.size(); j++) {
-		v[j].print();
-	}
-	printf("\n\n Expected Output:\n");
-	printf("342*15-23^^/+\n");
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
 
 void test4() {
-	char buf[] ="(10+43)*5-42";
-	Shuntingyard s(buf);
+	char buf[] = "(y+y^2+y^4)*(x+24+x^2)";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nShunting Yard Output:\n");
-	for(int j = 0; j<v.size(); j++) {
-		v[j].print();
-	}
-	printf("\n\n Expected Output:\n");
-	printf("1043+5*42-\n");
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
 
 void test5() {
-	char buf[] ="x^3+y^2+x*y+5";
-	Shuntingyard s(buf);
+	char buf[] = "(x^4+15x^2+32/x+5)/(x^2+32x+25)";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nShunting Yard Output:\n");
-	for(int j = 0; j<v.size(); j++) {
-		v[j].print();
-	}
-	printf("\n\n Expected Output:\n");
-	printf("x3^y2^+xy*+5+\n");
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
 
 void test6() {
       /*
       Test for Building Tree 
       */
-      char buf[] = "x^3+y^2+x*y+5";
-      Shuntingyard s(buf);
-      std::vector<Token> v = s.infixToPostfix();
-      printf("\nTree Build Output:\n");
-      ExpressionApplication e(v);
-      e._expression -> print();
-      fflush(stdout);
-      printf("\nExpected Output:\n");
-      printf("((((x^3)+(y^2))+(x*y))+5)\n");
+	char buf[] = "y*x^4+x^9";
+	printf("input: %s\n\n", buf);
+    Shuntingyard s(buf);
+	std::vector<Token> v = s.infixToPostfix();
+    printf("Differentiated Tree Output:\n");
+    ExpressionApplication e(v);
+	BinaryTree * ret = e.simplify();
+	ret -> print();
+    fflush(stdout);
 }
 
 void test7() {
 	char buf[] = "((((3*(x^2))+(2*(0^1)))+((1*y)+(x*0)))+0)";
+	printf("input: %s\n\n", buf);
 	Shuntingyard s(buf);
 	std::vector<Token> v = s.infixToPostfix();
-	printf("\nSimplified Tree Output:\n");
+	printf("Differentiated Tree Output:\n");
 	ExpressionApplication e(v);
 	BinaryTree *ret = e.simplify();
 	ret -> print();
 	fflush(stdout);
-	printf("\nExpected Output\n");
-	printf("((3*(x^2))+y)\n");
 }
-void test8() {
-	char buf[] = "x^3+y^2+x*y+5";
-    Shuntingyard s(buf);
-	std::vector<Token> v = s.infixToPostfix();
-    printf("\nDifferentiated Tree Output:\n");
-    ExpressionApplication e(v);
-	BinaryTree * ret = e.simplify();
-	ret -> print();
-    fflush(stdout);
-    printf("\nExpected Output:\n");
-    printf("((3*(x^2))+y)\n");
-}
-void test9() {
-	char buf[] = "y*x^4+x^9";
-    Shuntingyard s(buf);
-	std::vector<Token> v = s.infixToPostfix();
-    printf("\nDifferentiated Tree Output:\n");
-    ExpressionApplication e(v);
-	BinaryTree * ret = e.simplify();
-	ret -> print();
-    fflush(stdout);
-    printf("\nExpected Output:\n");
-    printf("(3*(x^2))\n");
 
-
-}
 int main(int argc, char* argv[]) {
 	if (argc == 1) {
 		test_io(); // std io for manual testing
@@ -174,12 +142,6 @@ int main(int argc, char* argv[]) {
 		}
 		if(	 !strcmp(argv[1], "test7")) {
 			test7();
-		}
-		if(	 !strcmp(argv[1], "test8")) {
-			test8();	
-		}
-		if(	 !strcmp(argv[1], "test9")) {
-			test9();
 		}
 	}
 }
